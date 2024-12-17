@@ -1,6 +1,7 @@
 pipeline {
     agent any
 
+<<<<<<< HEAD
     environment {
         // MongoDB URI stored securely
         MONGO_URI = 'mongodb+srv://ARTHUR:Cristiano7!@cluster001.8kpqw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster001'
@@ -34,6 +35,12 @@ pipeline {
             steps {
                 script {
                     // Install npm dependencies
+=======
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                script {
+>>>>>>> origin/main
                     sh 'npm install'
                 }
             }
@@ -42,7 +49,11 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
+<<<<<<< HEAD
                     // Run the tests with npm
+=======
+                    // Run tests using npm
+>>>>>>> origin/main
                     sh 'npm test'
                 }
             }
@@ -51,11 +62,17 @@ pipeline {
         stage('Deploy to Render') {
             steps {
                 script {
+<<<<<<< HEAD
                     // Deploy the app to Render (assumes Render is set up for automatic deployment)
+=======
+                    // Start the server with 'node server'
+                    echo 'Deploying to Render...'
+>>>>>>> origin/main
                     sh 'node server'
                 }
             }
         }
+<<<<<<< HEAD
 
         stage('Notify Slack') {
             steps {
@@ -69,14 +86,24 @@ pipeline {
                 }
             }
         }
+=======
+>>>>>>> origin/main
     }
 
     post {
         success {
+<<<<<<< HEAD
             echo 'Deployment to Render was successful.'
         }
         failure {
             echo 'Deployment failed. Please check the logs.'
+=======
+            echo 'Deployment to Render and tests were successful!'
+        }
+        failure {
+            echo 'Deployment or tests failed. Check the logs for details.'
+            // Send an email or Slack notification if tests fail
+>>>>>>> origin/main
         }
     }
 }
